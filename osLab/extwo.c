@@ -17,7 +17,7 @@ int main()
 
     printf("n--- Creating and writing File ---\n");
 
-    fd = open("student.txt" , O_CREAT |O_WRONGLY,0644);
+    fd = open("student.txt" ,O_CREAT|O_WRONLY,0644);
 
     if(fd<0)
     { 
@@ -43,7 +43,7 @@ int main()
         return 1;
     }
 
-    int bytes = read(fd, buffer , sizeof(buffer)-l);
+    int bytes=read(fd,buffer,sizeof(buffer)-1);
 
     buffer[bytes]= '\0';
 
@@ -69,7 +69,7 @@ int main()
 
     printf("\n---Creating Directory---\n");
 
-    if(mk.dir("TestDirectory", 0755)==0)
+    if(mkdir("TestDirectory",0755)==0)
     {
         printf("Directory created successfully\n");
     }
@@ -91,7 +91,7 @@ int main()
 
     while((entry = readdir(dir))!=NULL)
     {
-        printf(%s\n, entry->d_name);
+        printf("%s\n", entry->d_name);
     }
 
     closedir(dir);
